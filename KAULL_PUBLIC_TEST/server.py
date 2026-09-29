@@ -65,6 +65,11 @@ async def ws_handler(request):
 
 app = web.Application()
 app.router.add_get("/", index)
+
+async def ads_txt(request):
+    return web.FileResponse(os.path.join(ROOT, "ads.txt"))
+
+app.router.add_get("/ads.txt", ads_txt)
 app.router.add_get("/ws", ws_handler)
 
 async def health(request):
